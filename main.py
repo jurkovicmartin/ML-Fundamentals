@@ -14,11 +14,11 @@ def main():
     # Example of OR gate
     labels_or = np.array([0, 1, 1, 1]) 
 
-    perceptron = Perceptron(2, [0.5, 0.5], 0.5)
+    perceptron = Perceptron(2)
 
-    perceptron.learn(training_data, labels_or, 10)
+    perceptron.learn(training_data, labels_or)
 
-    perceptron.train(training_data)
+    perceptron.train(training_data, True)
 
 
 
