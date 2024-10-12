@@ -1,3 +1,7 @@
+"""
+Binary gate approximation with perceptron.
+"""
+
 from perceptron import Perceptron
 import numpy as np
 
@@ -16,9 +20,9 @@ def main():
 
     perceptron = Perceptron(2)
 
-    perceptron.learn(training_data, labels_or)
+    perceptron.train(training_data, labels_and)
 
-    perceptron.train(training_data, True)
+    perceptron.test(training_data, True)
 
 
 
