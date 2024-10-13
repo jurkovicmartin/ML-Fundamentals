@@ -81,10 +81,10 @@ class Perceptron:
 
                     prediction = self.predict(input)
 
-                    error = prediction - label
+                    error = label - prediction
 
-                    self.weights -= error * self.learning_rate * np.array(input)
-                    self.bias -= error * self.learning_rate
+                    self.weights += error * self.learning_rate * np.array(input)
+                    self.bias += error * self.learning_rate
 
 
     def test(self, data, graph: bool =False):
