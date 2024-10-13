@@ -69,9 +69,9 @@ Number of iterations could be set two ways in this case. First one is that learn
 
 $error = label - prediction$
 
-$weights_(i+1) = weights_i + error * learning rate * input$
+$weights_{i+1} = weights_i + error * rate * input$
 
-$bias_(i+1) = bias_i + error * learning rate$
+$bias_{i+1} = bias_i + error * rate$
 
 New parameter here is a learning rate. This parameters is applied to the learning process. Learning rate value impacts the changes to the weights and bias in each adjusting calculation. Bigger rate means bigger changes.
 
