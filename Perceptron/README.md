@@ -69,16 +69,24 @@ Number of iterations could be set two ways in this case. First one is that learn
 
 $error = label - prediction$
 
-$weights_i+1 = weights_i + error * learning_rate * input$
+$weights_(i+1) = weights_i + error * learning rate * input$
 
-$bias_i+1 = bias_i + error * learning_rate$
+$bias_(i+1) = bias_i + error * learning rate$
 
 New parameter here is a learning rate. This parameters is applied to the learning process. Learning rate value impacts the changes to the weights and bias in each adjusting calculation. Bigger rate means bigger changes.
 
 ## Implementation
 Perceptron activation function is a simple step function.
 
-<img src="README_img/step_fnc.png" title="Step function" alt="Step function">
+<img src="README_img/step_fnc.png" title="Step function" alt="Step function" width=50%>
+
+$$
+f(x) = 
+\begin{cases} 
+0 & \text{if } x < 0, \\
+1 & \text{if } x \geq 0 
+\end{cases}
+$$
 
 When creating the Perceptron instance you must set the input_size parameter (number of inputs) and optionally you can set starting weights and bias (if you don't these value will be set randomly in range 0-1).
 
