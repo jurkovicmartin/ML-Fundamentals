@@ -16,7 +16,7 @@ def main():
               [1, 0, 0, 1],
               [1, 1, 0, 0]]
     
-    network.train(input, labels, learning_rate=0.5, error=0.05, graph=True)
+    network.train(input, labels, learning_rate=0.5, error=0.1, graph=True)
 
     input = [0, 0]
     predictions = network.predict(input)

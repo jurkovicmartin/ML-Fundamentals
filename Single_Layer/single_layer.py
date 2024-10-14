@@ -48,13 +48,24 @@ class SingleLayerNetwork:
 
     def predict(self, input):
         """
-        Returns array of predictions.
+        Returns array of neuron predictions.
         """
         input = np.array(input)[:, np.newaxis]
         # z = wi * xi + b
         z = np.dot(self.weights, input) + self.biases
 
         return np.array([activation_function(x) for x in z])
+    
+
+    def calculate_derivations(self, input):
+        """
+        Returns array of derivations of activation function.
+        """
+        input = np.array(input)[:, np.newaxis]
+        # z = wi * xi + b
+        z = np.dot(self.weights, input) + self.biases
+
+        return np.array([derivation_function(x) for x in z]) 
     
 
     def train(self, data, labels, learning_rate: float =0.1, epochs: int =None, error: float =None, graph: bool =None):
@@ -83,12 +94,8 @@ class SingleLayerNetwork:
                     neurons_errors = np.array(label - outputs)
 
                     sample_error = 0.5 * np.sum(np.power(neurons_errors, 2))
-                
-                    # derivations = np.array([derivation_function(x) for x in neurons_errors])
-                    # self.weights += learning_rate * derivations * input
-                    # self.biases += learning_rate * derivations
 
-                    derivations = np.array([derivation_function(x) for x in outputs])
+                    derivations = self.calculate_derivations(input)
                     # Makes input shape (1, n) instead of (n,) 
                     self.weights += learning_rate * neurons_errors * derivations * input.reshape(1, -1)
                     self.biases += learning_rate * neurons_errors * derivations
@@ -123,7 +130,7 @@ class SingleLayerNetwork:
 
                     sample_error = 0.5 * np.sum(np.power(neurons_errors, 2))
 
-                    derivations = np.array([derivation_function(x) for x in outputs])
+                    derivations = self.calculate_derivations(input)
                     # Makes input shape (1, n) instead of (n,) 
                     self.weights += learning_rate * neurons_errors * derivations * input.reshape(1, -1)
                     self.biases += learning_rate * neurons_errors * derivations
