@@ -64,7 +64,9 @@ The neural network is built from neurons. Each neuron has its own weights and bi
 
 $z_j = \sum_{i}(w_{ji} * x_{ji}) + b_j$
 
-$0 < j \leg n (n is total number of neurons$
+$0 < j \leq n$
+
+*(n is total number of neuron)*
 
 $y_j = f(z_j)$
 
@@ -81,11 +83,17 @@ Number of iterations can be set in two ways in this example. First one is to set
 
 *Network learning flowchart (with set goal error value)*
 
-$n_e = label - output (n_e is error of 1 neuron for 1 sample)$
+$n_e = label - output$
 
-$s_e = \frac{1}{2} * \sum_i(n_{ei}^2) (s_e is sample error = errors of all neurons for 1 sample)$
+*(n_e is error of 1 neuron for 1 sample)*
 
-$TN_e = \sum_i(s_{ei}) (TN_e is Total Network error)$
+$s_e = \frac{1}{2} * \sum_i(n_{ei}^2)$
+
+*(s_e is sample error = errors of all neurons for 1 sample)*
+
+$TN_e = \sum_i(s_{ei})$
+
+*(TN_e is Total Network error)*
 
 Parameters adjusting
 
