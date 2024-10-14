@@ -6,6 +6,8 @@ In this example single perceptron is used to approximate logical gate function (
 ## Problem description
 We have combination of 2 bits as an input and want to decide what should be at the output (0 or 1). The output will depend in the selected logical gate.
 
+*Table of Input-Output combinations that should the perceptron follow*
+
 <table>
   <tr>
     <th colspan="2">Input</th>
@@ -54,14 +56,14 @@ $z = \sum_{i}(w_i * x_i) + b$
 
 $y = f(z)$
 
-Function *f(z)* is referred to as activation function where *z* represents the perceptron potential.
+Function *f(z)* is referred to as an activation function where *z* represents the perceptron potential.
 
 ## Perceptron learning
 In this model supervised learning principle was used. Supervised means that the model was trained with labeled training data. Training data represents inputs for the perceptron and each training input has a label. Label is a value that should be outputted.
 
 Learning is an iterative process. In each iteration perceptron counts output value. This value is then compared to the label. If there is a difference the weights and bias is adjusted. In each iteration all training data is showed to the model.
 
-Number of iterations could be set two ways in this case. First one is that learning process go on until the weights and bias stop changing. Second one is by explicit saying number of iterations (epochs).
+Number of iterations can be set in two ways in this example. First one is that learning process go on until the weights and bias stop changing. Second one is by explicit saying number of iterations (epochs).
 
 <img src="README_img/learning_flowchart.png" title="Learning flowchart" alt="Learning flowchart">
 
