@@ -64,11 +64,11 @@ The neural network is built from neurons. Each neuron has its own weights and bi
 
 $z_j = \sum_{i}(w_{ji} * x_{ji}) + b_j$
 
-$0 < j \leg number of neurons$
+$0 < j \leg n (n is total number of neurons$
 
 $y_j = f(z_j)$
 
-Function *f(z)* iis referred to as an activation function where *z* represents the neuron potential.
+Function *f(z)* is referred to as an activation function where *z* represents the neuron potential.
 
 ## Network training
 In this example supervised training principle was used. That means that network was trained with labeled training data.
@@ -100,7 +100,7 @@ Neurons activation functions is a sigmoid function.
 
 <img src="README_img/sigmoid.png" title="Sigmoid function" alt="Sigmoid function" width=50%>
 
-$f(x) = \frac{1}{1 + e^{-x}}&
+$f(x) = \frac{1}{1 + e^{-x}}$
 
 $f(x)' = f(x) * (1 - f(x))$
 
