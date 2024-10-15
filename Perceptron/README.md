@@ -1,5 +1,5 @@
 # Perceptron
-Perceptron means one neuron and is the easiest block of neural network.
+Perceptron is the easiest type of network with only one neuron.
 
 In this example single perceptron is used to approximate logical gate function (OR or AND).
 
@@ -57,6 +57,10 @@ $z = \sum_{i}(w_i * x_i) + b$
 $y = f(z)$
 
 Function *f(z)* is referred to as an activation function where *z* represents the perceptron potential.
+
+Activation function of perceptron is some kind of step function. That function determines the output value. For example basic step function will cause that output could be just 0 or 1. Perceptron aplication is good for a simple classification where the classes can be separate by line.
+
+<!--- image -->
 
 ## Perceptron learning
 In this model supervised learning principle was used. Supervised means that the model was trained with labeled training data. Training data represents inputs for the perceptron and each training input has a label. Label is a value that should be outputted.
