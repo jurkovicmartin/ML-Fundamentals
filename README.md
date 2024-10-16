@@ -1,7 +1,7 @@
 # AI Fundamentals
-This repository is about my entrance to the artificial intelligence topic.
 
-This repository will track my journey to learn and understand AI fundamentals.
+## About
+This repository is about my entrance to the artificial intelligence problematic and track my journey to learn and understand AI fundamentals. The learning process is based on creating the networks from scratch.
 
 <img src="README_img/brain.png" title="AI brain" alt="AI brain" width=20%>
 
