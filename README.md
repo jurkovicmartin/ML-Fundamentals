@@ -13,3 +13,4 @@ Repository layout is simple. Each folder contains one "model". Each model is som
 
 - Perceptron => Single neuron
 - Single_Layer => Single layer network with multiple neurons
+- MultiLayer => Multi-layer network with back propagation

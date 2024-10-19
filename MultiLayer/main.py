@@ -25,12 +25,12 @@ labels = np.eye(10)
 neurons_num = [40, 20]
 
 network = NeuralNetwork(input_num=324, output_num=10, hidden_num=2, hidden_neurons=neurons_num)
-network.train(data=images, labels=labels, learning_rate=0.1, moment=0.2, acceptable_error=0.1, graph=True)
+network.train(data=images, labels=labels, learning_rate=0.1, momentum=0.2, acceptable_error=0.1, graph=True)
 
 ### TESTING
 noisy_images = []
 for image in images:
-    noise = np.random.uniform(-0.5, 0.5, image.shape)
+    noise = np.random.uniform(-0.7, 0.7, image.shape)
     # Make sure the values are in range 0-1
     noisy_images.append(np.clip(image + noise, 0, 1))
 

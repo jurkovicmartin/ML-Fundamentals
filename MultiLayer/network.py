@@ -87,7 +87,7 @@ class NeuralNetwork:
             raise Exception("Invalid amount option.")
         
 
-    def train(self, data, labels, learning_rate: float, acceptable_error: float, moment: float =0.0, epochs: int =1000, graph: bool =False):
+    def train(self, data, labels, learning_rate: float, acceptable_error: float, momentum: float =0.0, epochs: int =1000, graph: bool =False):
         """Trains the network.
 
         Args:
@@ -95,7 +95,7 @@ class NeuralNetwork:
             labels (array): training labels
             learning_rate (float): effects adjusting steps
             acceptable_error (float): training continues until the network error isn't lower
-            moment (float, optional): effects adjusting steps. Defaults to 0.0.
+            momentum (float, optional): effects adjusting steps. Defaults to 0.0.
             epochs (int, optional): maximum number of epochs. Defaults to 1000.
             graph (bool, optional): show network error function. Defaults to False.
         """
@@ -142,13 +142,13 @@ class NeuralNetwork:
                 help_weights = copy.deepcopy(self.weights)
                 help_biases = copy.deepcopy(self.biases)
 
-                self.weights[0] += learning_rate * deltas[0] * sample.T + moment * (self.weights[0] - last_weights[0])
+                self.weights[0] += learning_rate * deltas[0] * sample.T + momentum * (self.weights[0] - last_weights[0])
                 # print(self.biases[0] == last_biases[0])
-                self.biases[0] += learning_rate * deltas[0] + + moment * (self.biases[0] - last_biases[0])
+                self.biases[0] += learning_rate * deltas[0] + + momentum * (self.biases[0] - last_biases[0])
                 # Other layers
                 for i in range(1, self.layers):
-                    self.weights[i] += learning_rate * deltas[i] * outputs[i-1].T + moment * (self.weights[i] - last_weights[i])
-                    self.biases[i] += learning_rate * deltas[i]+ moment * (self.biases[i] - last_biases[i])
+                    self.weights[i] += learning_rate * deltas[i] * outputs[i-1].T + momentum * (self.weights[i] - last_weights[i])
+                    self.biases[i] += learning_rate * deltas[i]+ momentum * (self.biases[i] - last_biases[i])
 
                 last_weights = copy.deepcopy(help_weights)
                 last_biases = copy.deepcopy(help_biases)
