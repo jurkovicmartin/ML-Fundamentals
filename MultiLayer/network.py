@@ -111,7 +111,6 @@ class NeuralNetwork:
             network_error = 0
 
             for sample, label in zip(data, labels):
-                # Reshape
                 sample = np.array(sample)[:, np.newaxis]
                 label = np.array(label)[:, np.newaxis]
 
@@ -171,4 +170,46 @@ class NeuralNetwork:
             plt.show()
 
 
+    def test(self, data, labels, output: str ="simple"):
+        """Tests the network.
+
+        Args:
+            data (array): testing data
+            labels (array): testing labels
+            output (str, optional): define how detailed the output will be. Defaults to "simple".
+
+        Returns:
+            Based on output parameter
+            simple (float): only accuracy
+            advanced (tuple): accuracy, number of samples, number of errors
+            detailed (tuple): accuracy, number of samples, number of errors, dictionary(label: frequency of the error)
+        """
+        errors_count = 0
+        samples_num = len(data)
+        errors = {value: 0 for value in labels}
         
+        for sample, label in zip(data, labels):
+            sample = sample[:, np.newaxis]
+            prediction = self.predict(sample, "output")
+
+            value = np.argmax(prediction)
+
+            if value != label:
+                errors_count += 1
+
+                # Update this error count
+                count = errors.pop(label)
+                count += 1
+                errors[label] = count
+
+        accuracy = (samples_num - errors_count) / samples_num
+
+        if output == "simple":
+            return accuracy
+        elif output == "advanced":
+            return accuracy, samples_num, errors_count
+        elif output == "detailed":
+            # Sort the dict by keys
+            return accuracy, samples_num, errors_count, dict(sorted(errors.items()))
+        else:
+            raise Exception("Invalid output option.")

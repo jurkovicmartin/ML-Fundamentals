@@ -1,5 +1,9 @@
 # Multi-Layer network
-Multi-layer neural network with back propagation to recognizing digits in 18x18 images.
+Multi-layer neural network with back propagation to recognize a single digit from an image.
+
+***Note: this page is about the model and its usage in "main.py" file.***
+
+The "handwritten.py" script contains example of usage neural network model which is described later along with Mnist handwritten digits dataset.
 
 ## Problem description
 Digit recognition from an image.
@@ -14,7 +18,9 @@ Multi-layer network we can generally split into tree parts.
 2. Input layer is followed by hidden layers. Generally there can be any number of hidden layers with anu number of neurons.
 3. Last layer is an output layer. Number of neurons in this layer is set by application (number of outputs is based on the problem). Outputs of these neurons are also outputs of the network.
 
-<!--- image general network-->
+<img src="README_img/network.png" alt="Network scheme" title="Network scheme" width=50%>
+
+*Network scheme*
 
 Each neuron is also specified by weights, bias and activation function.
 
@@ -78,3 +84,14 @@ When training training data, training labels, learning rate and acceptable error
 - Momentum really speed up the training process.
 - Learning rate, momentum, initial weight and initial biases - each of these has noticeable influence on network convergence.
 - The biggest challenge of this project were mathematics behind the back propagation and tracking all the values in matrixes. To look for right dimensions and right operators.
+- Training with huge amount of training samples is really slow (for these cases training with batches could be better)
+
+### Results from handwritten.py example
+
+<img src="README_img/error_fnc_handwritten.png" alt="Network error function" title="Network error function" width=50%>
+
+*Network error function*
+
+<img src="README_img/errors_freq.png" alt="Network output for 100 testing samples" title="Network output for 100 testing samples" width=50%>
+
+*Network output for 100 testing samples*
