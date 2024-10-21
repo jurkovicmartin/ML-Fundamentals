@@ -1,4 +1,4 @@
-# Multi-Layer network
+# Multi-Layer Network
 Multi-layer neural network with back propagation to recognize a single digit from an image.
 
 ***Note: this page is about the model and its usage in "main.py" file.***
