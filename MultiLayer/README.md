@@ -30,6 +30,8 @@ Training in this case was with back propagation method with parameters adjusting
 ### Back propagation
 Error back propagation is an iterative gradient algorithm that minimizes the square of error function. Practically that means that error propagating from output back to input. This backwards propagation helps adjust weights and biases. Overall goal is to find the minimum of networks loss (error) function. This method is used with supervised learning (because we need to be able to calculate error).
 
+### Training
+
 The training process then can be split into tree steps.
 1. Forward pass: training data are input into the network and outputs of each neuron is calculated. At the end there are predictions fo the output layer.
 2. Backward pass: we count the error of the output (based on labels of training data). This error is then propagated from the output layer back to the input layer. On the way errors for each neuron is counted.
@@ -46,6 +48,48 @@ In this example in addition to learning rate which defines the adjusting steps a
 *Error function with momentum*
 
 *Note: in both cases training was done with same learning rate and on average learning with momentum converge twice as fast.*
+
+### Formulas
+
+Output of a single neuron:
+
+$y = f(z)$
+
+$z = \sum_{i}(w_{i} * x_{i}) + b$
+
+*f(z) is an activation function*
+
+Errors:
+
+$E_{sample} = \frac{1}{2} \sum_i(d_i - y_i)^2$
+
+*labels - outputs*
+
+$E_{network} = \sum_i(E_{sample_i})$
+
+Back propagation:
+
+$\delta = (d - y) * \frac{df(z)}{dz}$
+
+*For output layer (labels - outputs)*
+
+$\delta = \sum_i(w_i * (d_i - y_i)) * \frac{df(z)}{dz}$
+
+*For hidden layers (error from previous layer * weights of previous layer, starting at the output layer)*
+
+Adjusting:
+
+$w_{i+1} = w_i + rate * \delta * input$
+
+$b_{i+1} = b_i + rate * \delta$
+
+*rate is learning rate and input is input of that layer (neuron) not network input (except the first layer)*
+
+$w_{i+1} = w_i + rate * \delta * input + momentum * (w_i - w_{i-1})$
+
+$b_{i+1} = b_i + rate * \delta * input + momentum * (b_i - b_{i-1})$
+
+*With momentum*
 
 
 ## Implementation
