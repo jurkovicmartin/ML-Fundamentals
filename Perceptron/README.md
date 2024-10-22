@@ -58,6 +58,12 @@ $y = f(z)$
 
 Function *f(z)* is referred to as an activation function where *z* represents the perceptron potential.
 
+Perceptron separates inputs with linear function.
+
+<img src="README_img/separation.png" alt="Illustration of perceptron separation" title="Illustration of perceptron separation" width=30%>
+
+*Illustration of perceptron separation*
+
 ## Perceptron learning
 In this model supervised learning principle was used. Supervised means that the model was trained with labeled training data. Training data represents inputs for the perceptron and each training input has a label. Label is a value that should be outputted.
 

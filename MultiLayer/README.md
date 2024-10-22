@@ -22,7 +22,15 @@ Multi-layer network we can generally split into tree parts.
 
 *Network scheme*
 
-Each neuron is also specified by weights, bias and activation function.
+Each neuron is specified by weights, bias and activation function.
+
+Network with back propagation separates the classes with lines as boundaries (this comes from the way of calculating z). Multilayer network can also separate nonlinear input.
+
+Property of this type of network is that every input is somehow classified. This means than unknown or even a wrong input is always assigned to some output. Wrong input is some input for which the network isn't trained (for example network is trained to recognize digits and we input a letter).
+
+<img src="README_img/separation.png" alt="Illustration of a multi-layer network separation" title="Illustration of a multi-layer layer network separation" width=30%>
+
+*Illustration of a multi-layer layer network separation*
 
 ## Network training
 Training in this case was with back propagation method with parameters adjusting after each training sample.

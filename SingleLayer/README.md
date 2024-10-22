@@ -25,6 +25,12 @@ $y_j = f(z_j)$
 
 Function *f(z)* is referred to as an activation function where *z* represents the neuron potential.
 
+Single layer can separate only linearly separable input.
+
+<img src="README_img/separation.png" alt="Illustration of a single layer network separation" title="Illustration of a single layer network separation" width=30%>
+
+*Illustration of a single layer network separation*
+
 ## Network training
 In this example supervised training principle was used. That means that network was trained with labeled training data.
 
