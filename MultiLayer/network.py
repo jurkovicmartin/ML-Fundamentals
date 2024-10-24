@@ -137,7 +137,6 @@ class NeuralNetwork:
 
                 ### ADJUSTING
                 # First layer
-                
                 help_weights = copy.deepcopy(self.weights)
                 help_biases = copy.deepcopy(self.biases)
 
