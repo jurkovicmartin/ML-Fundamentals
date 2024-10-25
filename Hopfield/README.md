@@ -66,6 +66,13 @@ Network can learn one or multiple patters that are parameters of learn method. W
 
 Reconstruct method can return either final state or array with all states from each iteration.
 
+### Training
+Network was trained to recognize 4 different images.
+
+<img src="README_img/train_img.png" title="Trained images" alt="Trained images" width=50%>
+
+*Training images*
+
 ### Testing
 Testing was done with 4 different types of image corruption.
 
