@@ -19,7 +19,7 @@ class Hopfield:
         self.weights = np.zeros((size, size))
         
 
-    def train(self, input):
+    def learn(self, input):
         """Train the network for a pattern/s.
 
         Args:

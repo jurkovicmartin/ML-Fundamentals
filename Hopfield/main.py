@@ -33,7 +33,7 @@ def main():
     _, network_size = np.shape(images)
 
     network = Hopfield(network_size)
-    network.train(images)
+    network.learn(images)
 
     ### TESTING
 
@@ -62,17 +62,6 @@ def main():
 
         plt.tight_layout()
         plt.show()
-
-
-    ### RECONSTRUCTION WITH DISPLAYING ALL STATES
-    outputs = network.reconstruct(test_images[3], "all")
-    for i, out in enumerate(outputs):
-        plt.imshow(np.reshape(out, image_size), cmap="gray")
-        plt.axis("off")
-        plt.title(f"Image at {i} iteration")
-        plt.show()
-
-
 
 
 if __name__ == "__main__":
