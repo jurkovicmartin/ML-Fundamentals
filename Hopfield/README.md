@@ -95,3 +95,4 @@ Testing was done with 4 different types of image corruption.
 ## Notes
 - There is a BIG influence of similarities of training patterns when learning network for multiple patters.
 - input sequence (image) should contain values -1/1 instead of 0/1.
+- I assume that for much bigger inputs the network could perform good even with more learned patters (in that case there could be less similarities)

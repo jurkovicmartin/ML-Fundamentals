@@ -23,7 +23,7 @@ Repository layout is simple. Each folder contains one "model". Each model is som
         <th>Logical gates</th>
     </tr>
     <tr>
-        <th>Single_Layer</th>
+        <th>SingleLayer</th>
         <th>Single layer network with multiple neurons</th>
         <th>Morse numbers decoder</th>
     </tr>
@@ -31,5 +31,10 @@ Repository layout is simple. Each folder contains one "model". Each model is som
         <th>MultiLayer</th>
         <th>Multi-layer network with back propagation</th>
         <th>Digits recognition from an image</th>
+    </tr>
+    <tr>
+        <th>Hopfield</th>
+        <th>Discrete Hopfield network</th>
+        <th>Images reconstruction</th>
     </tr>
 </table>
