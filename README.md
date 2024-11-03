@@ -42,4 +42,9 @@ Repository layout is simple. Each folder contains one "model". Each model is som
         <th>Kohonen network (SOM - self-organizing map)</th>
         <th>Data clustering</th>
     </tr>
+    <tr>
+        <th>DecisionTree</th>
+        <th>Decision tree structure</th>
+        <th>Iris species classification</th>
+    </tr>
 </table>

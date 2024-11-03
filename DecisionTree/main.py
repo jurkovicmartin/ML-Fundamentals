@@ -4,6 +4,9 @@ from tree import DecisionTree
 
 def main():
     df = pd.read_csv("DecisionTree/data/Iris.csv")
+    # Randomly shuffles rows (in the file they are ordered by specie (label))
+    # Ordered dataset is problem for future training/testing data splitting
+    df = df.sample(frac=1).reset_index(drop=True)
     # .values converts the dataframe type to numpy array
     data = df[["SepalLengthCm", "SepalWidthCm", "PetalLengthCm", "PetalWidthCm"]].values
     labels = df["Species"].values
