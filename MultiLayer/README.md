@@ -140,3 +140,4 @@ Training was done with 1000 samples for acceptable error 0.1 (10%). For training
 - The biggest challenge of this project were mathematics behind the back propagation and tracking all the values in matrixes. To look for right dimensions and right operators.
 - Training with huge amount of training samples is really slow (for these cases training with batches could be better).
 - When using tanh function labels -1/1 are more optional than 0/1.
+- Model takes already flatten input data.

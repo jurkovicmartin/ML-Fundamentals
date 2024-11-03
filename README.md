@@ -37,4 +37,9 @@ Repository layout is simple. Each folder contains one "model". Each model is som
         <th>Discrete Hopfield network</th>
         <th>Images reconstruction</th>
     </tr>
+    <tr>
+        <th>Kohonen</th>
+        <th>Kohonen network (SOM - self-organizing map)</th>
+        <th>Data clustering</th>
+    </tr>
 </table>
