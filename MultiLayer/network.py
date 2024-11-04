@@ -3,26 +3,6 @@ import matplotlib.pyplot as plt
 
 import copy
 
-def activation_function(z: float) -> float:
-    """
-    Hyperbolic tangent function.
-    y(x) = (1 - e^x) / (1 + e^-x)
-    """
-    return np.tanh(z)
-
-
-def derivation_function(y: float) -> float:
-    """
-    Derivation of activation function.
-    Derivation of tanh.
-    y(x) = (1 - e^x) / (1 + e^-x)
-    y(x)' = 1 - y(x)^2
-
-    Parameters
-    ----
-    y: value of the tanh function
-    """
-    return 1 - np.square(y)
 
 class NeuralNetwork:
     def __init__(self, input_num: int, output_num: int, hidden_num: int, hidden_neurons):
@@ -57,6 +37,28 @@ class NeuralNetwork:
         # Add output layer
         self.biases.append(0.01 * np.random.rand(output_num, 1))
 
+    @staticmethod
+    def activation_function(z: float) -> float:
+        """
+        Hyperbolic tangent function.
+        y(x) = (1 - e^x) / (1 + e^-x)
+        """
+        return np.tanh(z)
+
+    @staticmethod
+    def derivation_function(y: float) -> float:
+        """
+        Derivation of activation function.
+        Derivation of tanh.
+        y(x) = (1 - e^x) / (1 + e^-x)
+        y(x)' = 1 - y(x)^2
+
+        Parameters
+        ----
+        y: value of the tanh function
+        """
+        return 1 - np.square(y)
+
     
     def predict(self, input, amount: str):
         """Get predictions from neurons.
@@ -72,11 +74,11 @@ class NeuralNetwork:
         outputs = []
         # First hidden layer
         z = np.dot(self.weights[0], input) + self.biases[0]
-        outputs.append(activation_function(z))
+        outputs.append(NeuralNetwork.activation_function(z))
         # Other layers
         for i in range(1, self.layers):
             z = np.dot(self.weights[i], outputs[i-1])
-            outputs.append(activation_function(z))
+            outputs.append(NeuralNetwork.activation_function(z))
 
         if amount == "output":
             # Return only predictions from output layer
@@ -126,13 +128,13 @@ class NeuralNetwork:
                 errors = [output_error]
 
                 # Output layer
-                deltas.insert(0, errors[-1] * derivation_function(outputs[-1]))
+                deltas.insert(0, errors[-1] * NeuralNetwork.derivation_function(outputs[-1]))
 
                 # Other layers
                 for i in range(1, self.layers):
                     error = np.dot(self.weights[-i].T, errors[0])
                     errors.insert(0, error)
-                    delta = error * derivation_function(outputs[-i-1])
+                    delta = error * NeuralNetwork.derivation_function(outputs[-i-1])
                     deltas.insert(0, delta)
 
                 ### ADJUSTING

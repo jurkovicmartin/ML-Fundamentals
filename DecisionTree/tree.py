@@ -3,43 +3,44 @@ import numpy as np
 from node import Node
 
 
-def entropy(x) -> float:
-    """Calculates entropy of x.
-       In terms of decision tree use labels to calculate entropy.
-
-    Args:
-        x (array): input
-
-    Returns:
-        float: entropy
-    """
-    total_count = len(x)
-    _, counts = np.unique(x, return_counts=True)
-
-    probabilities = counts / total_count
-
-    return -np.sum([p * np.log2(p) for p in probabilities if p > 0])
-
-
-def most_common(x):
-    """Returns most common value from input.
-
-    Args:
-        x (array): input
-
-    Returns:
-        most common value
-    """
-    values, counts = np.unique(x, return_counts=True)
-
-    max = np.argmax(counts)
-
-    return values[max]
-
-
 class DecisionTree:
+
     def __init__(self):
         self.root = None
+
+    @staticmethod
+    def entropy(x) -> float:
+        """Calculates entropy of x.
+        In terms of decision tree use labels to calculate entropy.
+
+        Args:
+            x (array): input
+
+        Returns:
+            float: entropy
+        """
+        total_count = len(x)
+        _, counts = np.unique(x, return_counts=True)
+
+        probabilities = counts / total_count
+
+        return -np.sum([p * np.log2(p) for p in probabilities if p > 0])
+
+    @staticmethod
+    def most_common(x):
+        """Returns most common value from input.
+
+        Args:
+            x (array): input
+
+        Returns:
+            most common value
+        """
+        values, counts = np.unique(x, return_counts=True)
+
+        max = np.argmax(counts)
+
+        return values[max]
 
 
     def build_tree(self, data, labels, max_depth: int, min_split: int):
@@ -155,7 +156,7 @@ class DecisionTree:
         best_threshold = None
         best_info_gain = -1
 
-        parent_entropy = entropy(labels)
+        parent_entropy = DecisionTree.entropy(labels)
 
         # Input dimensions
         value_number, features_number = np.shape(data)
@@ -174,8 +175,8 @@ class DecisionTree:
                     continue
 
                 ### CALCULATING INFORMATION GAIN
-                left_entropy = entropy([labels[i] for i in left_indexes])
-                right_entropy = entropy([labels[i] for i in right_indexes])
+                left_entropy = DecisionTree.entropy([labels[i] for i in left_indexes])
+                right_entropy = DecisionTree.entropy([labels[i] for i in right_indexes])
                 # Wight is just frequency
                 left_weight = len(left_indexes) / len(data)
                 right_weight = len(right_indexes) / len(data)
@@ -208,13 +209,13 @@ class DecisionTree:
         ### LEAF NODE CONDITIONS
         # Reached max depth
         if depth == self.max_depth:
-            return Node(value=most_common(labels))
+            return Node(value=DecisionTree.most_common(labels))
         # Too little data to split
         if len(data) <= self.min_split:
-            return Node(value=most_common(labels))
+            return Node(value=DecisionTree.most_common(labels))
         # All of the input data belongs to one class
         if len(set(labels)) == 1:
-            return Node(value=most_common(labels))
+            return Node(value=DecisionTree.most_common(labels))
 
         # Best feature and threshold
         feature, threshold = self._find_criteria(data, labels)

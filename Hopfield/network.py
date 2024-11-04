@@ -1,12 +1,5 @@
 import numpy as np
 
-def activation_function(x: float):
-    """
-    Bipolar step function.
-    """
-    return -1 if x < 0 else 1
-
-
 class Hopfield:
     def __init__(self, size: int):
         """Initialize Hopfield network.
@@ -17,6 +10,13 @@ class Hopfield:
         self.size = size
 
         self.weights = np.zeros((size, size))
+
+    @staticmethod
+    def activation_function(x: float):
+        """
+        Bipolar step function.
+        """
+        return -1 if x < 0 else 1
         
 
     def learn(self, input):
@@ -61,7 +61,7 @@ class Hopfield:
             help_state = state.copy()
 
             potentials = np.dot(self.weights, state)
-            state = np.array([activation_function(x) for x in potentials])[:, np.newaxis]
+            state = np.array([Hopfield.activation_function(x) for x in potentials])[:, np.newaxis]
             all_states.append(state)
             last_state = help_state.copy()
 

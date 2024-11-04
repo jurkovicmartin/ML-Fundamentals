@@ -2,24 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def activation_function(z: float) -> float:
-    """
-    Sigmoid function.
-    y(x) = 1 / (1 + e^-x)
-    """
-    return 1 / (1 + np.exp(-z))
-
-
-def derivation_function(z: float) -> float:
-    """
-    Derivation of activation function.
-    Derivation of sigmoid.
-    y(x) = 1 / (1 + e^-x)
-    y(x)' = y(x) * (1 - y(x))
-    """
-    return activation_function(z) * (1 - activation_function(z))
-
-
 class SingleLayerNetwork:
     def __init__(self, neurons: int, input_size: int, weights =None, biases =None):
         """Represents a single layer neural network
@@ -45,6 +27,24 @@ class SingleLayerNetwork:
         else:
             raise Exception("Wrong biases array shape. Biases must have shape (neurons, 1)")
         
+    @staticmethod
+    def activation_function(z: float) -> float:
+        """
+        Sigmoid function.
+        y(x) = 1 / (1 + e^-x)
+        """
+        return 1 / (1 + np.exp(-z))
+
+    @staticmethod
+    def derivation_function(z: float) -> float:
+        """
+        Derivation of activation function.
+        Derivation of sigmoid.
+        y(x) = 1 / (1 + e^-x)
+        y(x)' = y(x) * (1 - y(x))
+        """
+        return SingleLayerNetwork.activation_function(z) * (1 - SingleLayerNetwork.activation_function(z))
+
 
     def predict(self, input):
         """
@@ -54,7 +54,7 @@ class SingleLayerNetwork:
         # z = wi * xi + b
         z = np.dot(self.weights, input) + self.biases
 
-        return np.array([activation_function(x) for x in z])
+        return np.array([SingleLayerNetwork.activation_function(x) for x in z])
     
 
     def calculate_derivations(self, input):
@@ -65,7 +65,7 @@ class SingleLayerNetwork:
         # z = wi * xi + b
         z = np.dot(self.weights, input) + self.biases
 
-        return np.array([derivation_function(x) for x in z]) 
+        return np.array([SingleLayerNetwork.derivation_function(x) for x in z]) 
     
 
     def train(self, data, labels, learning_rate: float =0.1, epochs: int =None, error: float =None, graph: bool =None):

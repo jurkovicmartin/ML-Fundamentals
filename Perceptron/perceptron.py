@@ -2,13 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def activation_function(z: float) -> int:
-    """
-    Step function.
-    """
-    return 0 if z < 0 else 1
-
-
 class Perceptron:
     def __init__(self, input_size: int, weights =None, bias: float =None):
         """
@@ -32,12 +25,19 @@ class Perceptron:
         else:
             self.bias = bias
 
+    @staticmethod
+    def activation_function(z: float) -> int:
+        """
+        Step function.
+        """
+        return 0 if z < 0 else 1
+
 
     def predict(self, input) -> int:
         # z = sum(wi * xi) + w0
         z = np.dot(self.weights, input) + self.bias
 
-        return activation_function(z)
+        return Perceptron.activation_function(z)
     
 
     def train(self, data, labels, learning_rate: float =0.1, epochs: int =None):
