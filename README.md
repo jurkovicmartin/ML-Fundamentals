@@ -36,7 +36,7 @@ All of the information i present here is what i watched or read. It is my interp
         <th>Morse numbers decoder</th>
     </tr>
     <tr>
-        <th>MultiLayer</th>
+        <th>Backpropagation</th>
         <th>Multi-layer network with back propagation</th>
         <th>Digits recognition from an image</th>
     </tr>
