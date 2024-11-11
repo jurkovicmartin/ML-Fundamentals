@@ -55,4 +55,9 @@ All of the information i present here is what i watched or read. It is my interp
         <th>Decision tree structure</th>
         <th>Iris species classification</th>
     </tr>
+    <tr>
+        <th>Reinforcement</th>
+        <th>Reinforcement Q-learning</th>
+        <th>Traveling through a maze</th>
+    </tr>
 </table>

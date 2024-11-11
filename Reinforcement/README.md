@@ -1,6 +1,3 @@
-best record 42 moves
-
-
 # Reinforcement learning
 Reinforcement learning model for maze solving.
 
@@ -131,7 +128,7 @@ Initial epsilon is 1 (100% exploration) and is decreased every epoch until it re
 
 Epsilon decreasing:
 
-$\epsilon_{t+1} = \epsilon_{t} - (1 - \epsilon_{min}) / epochs$
+$\epsilon_{t+1} = \epsilon_{t} - \frac{(1 - \epsilon_{min})}{epochs}$
 
 Rewarding system
 <table>
