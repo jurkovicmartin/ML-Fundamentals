@@ -190,3 +190,4 @@ The best path agent found was 42 steps.
 - Lower minimum epsilon leads to better path optimization and fixed isn't performing well.
 - Higher max steps leads to faster finding the goal (terms of epochs) but with higher steps.
 - With too small discount factor the agent will always oscillate around start.
+- A* search algorithm found the exactly same path (implemented in Genetic folder).

@@ -3,6 +3,8 @@
 ## About
 This repository is about my entrance to the machine learning problematic and track my journey to learn and understand ML fundamentals. Repository contains from scratch coded models with examples and short documentation.
 
+**!Caution: For simplicity most of the input parameters are not checked. Wrong or illogical inputs are not handled in the examples!**
+
 ### Motivation
 My first attempt with neural networks was when i made a digit recognition network with TensorFlow Keras model. Building that network was really simple and it worked. Still to this day it seems actually fascinating to me how these structures works and can "program" themselves to perform some specific task.
 
