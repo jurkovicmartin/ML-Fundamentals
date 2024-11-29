@@ -5,7 +5,7 @@ from matplotlib.colors import ListedColormap
 
 
 class Maze:
-    def __init__(self, path: str):
+    def __init__(self, values: np.array =None, path: str =None):
         """Maze environment from an image. One pixel represents one cell of the maze.
         Expected color combinations:
             black = wall
@@ -13,11 +13,27 @@ class Maze:
             green = start
             red = finish
 
+        Expected values combinations:
+                0 = wall
+                1 = moving point
+                2 = available move
+                3 = finish
+
         Args:
+            values (np.array, optional): matrix representation of the maze. Defaults to None.
             path (str): path to the image
         """
-        self.img = Image.open(path)
-        self._initialize()
+        # Maze via image
+        if path is not None and values is None:
+            self.img = Image.open(path)
+            self._initialize()
+        # Maze via values
+        elif values is not None and path is None:
+            self.img = None
+            self.maze = values
+            self._initialize()
+        else:
+            raise Exception("Provide only path or maze array")
 
 
     def _initialize(self):
@@ -27,7 +43,8 @@ class Maze:
                 2 = available move
                 3 = finish
         """
-        self.maze = np.array(self.img)
+        if self.img:
+            self.maze = np.array(self.img)
         self.shape = np.shape(self.maze)
         self.start_pos = None
         self.finish_pos = None

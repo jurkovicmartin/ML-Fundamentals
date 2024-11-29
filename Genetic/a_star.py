@@ -35,24 +35,45 @@ class Node:
 
 
 class Astar:
-    def __init__(self, path:str):
-        """A* search algorithm for finding a path in a 2D maze. Uses Maze class.
+    def __init__(self, values: np.array =None, path: str =None):
+        """A* search algorithm to find a path in a grid maze.
 
         Args:
-            path (str): path to the maze image
+            values (np.array, optional): matrix representation of the maze. Defaults to None.
+            path (str, optional): path to a png image of the maze. Defaults to None.
+
+            Expected color combinations:
+                black = wall
+                white = empty
+                green = start
+                red = finish
+
+            Expected values combinations:
+                0 = wall
+                1 = moving point
+                2 = available move
+                3 = finish
         """
-        self.maze = Maze(path)
+        # Maze via image
+        if path is not None and values is None:
+            self.maze = Maze(path=path)
+        # Maze via values
+        elif values is not None and path is None:
+            self.maze = Maze(values=values)
+        else:
+            raise Exception("Provide only path or values.")
+
         self.maze_array = self.maze.maze
         self.start = Node(self.maze.start_pos)
         self.finish = Node(self.maze.finish_pos)
         self.path = []
 
 
-    def find_path(self) -> list|None:
+    def find_path(self) -> list:
         """Tries to find a path in the maze.
 
         Returns:
-            list|None: moves of the path | path has not been found
+            list: moves of the path, in case there is no path returns list with cost of the termination point
         """
         # Open states
         open = []
@@ -69,7 +90,7 @@ class Astar:
 
             # Finish reached
             if current == self.finish:
-                print("Path found")
+                # print("Path found")
                 self._reconstruct_path(current)
                 return self.path
 
@@ -110,8 +131,9 @@ class Astar:
                 heapq.heappush(open, next)
             
         
-        print("Path not found")
-        return None
+        # print("Path not found")
+        return [current.cost]
+
             
 
     def _reconstruct_path(self, current: Node):
