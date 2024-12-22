@@ -21,6 +21,8 @@ All of the information i present here is what i watched or read. It is my interp
 
 ### Done models
 
+**!Caution: For simplicity most of the input parameters are not checked. Wrong or illogical inputs are not handled in the examples!**
+
 <table>
     <tr>
         <th>Folder</th>
@@ -61,5 +63,10 @@ All of the information i present here is what i watched or read. It is my interp
         <th>Reinforcement</th>
         <th>Reinforcement Q-learning</th>
         <th>Traveling through a maze</th>
+    </tr>
+    <tr>
+        <th>Genetic</th>
+        <th>Genetic algorithm</th>
+        <th>Generating a maze</th>
     </tr>
 </table>
