@@ -20,7 +20,7 @@ class Population:
             ch.set_fitness()
 
 
-    def evolve(self, mutation_count: int, mutation_probability: float, crossover_count: int, mutation_extend: bool =True, crossover_extend: bool =True, max_epochs: int =None):
+    def evolve(self, mutation_count: int, mutation_probability: float, crossover_count: int, mutation_extend: bool =True, crossover_extend: bool =True, max_epochs: int =None, mutation_weight: float =0.5, crossover_weight: float =0.35):
         """Evolve the population.
 
         Args:
@@ -30,12 +30,17 @@ class Population:
             mutation_extend (bool, optional): if mutating should keep the original (increases population size). Defaults to True.
             crossover_extend (bool, optional): if crossing over should keep the original (increases population size). Defaults to True.
             max_epochs (int, optional): maximum number of epochs. Defaults to None = until solution is found.
+            mutation_weight (float, optional): weight determines mutation probability for chromosomes with solution (weight * probability)
+            crossover_weight (float, optional): determines probability of chromosome keeping his genes (0 + weight, 1 - weight)
+
         """
         self.mutation_count = mutation_count
         self.mutation_probability = mutation_probability
         self.crossover_count = crossover_count
         self.mutation_extend = mutation_extend
         self.crossover_extend = crossover_extend
+        self.mutation_weight = mutation_weight
+        self.crossover_weight = crossover_weight
 
         epochs = 1
         # Go until there is a chromosome with solution
@@ -64,11 +69,11 @@ class Population:
         if self.mutation_extend:
             for idx in indexes:
                 self.population.append(self.population[idx])
-                self.population[-1].mutate(self.mutation_probability)
+                self.population[-1].mutate(self.mutation_probability, self.mutation_weight)
                 self.population[-1].set_fitness()
         else:
             for idx in indexes:
-                self.population[idx].mutate(self.mutation_probability)
+                self.population[idx].mutate(self.mutation_probability, self.mutation_weight)
                 self.population[idx].set_fitness()
 
 
@@ -102,7 +107,7 @@ class Population:
         if self.crossover_extend:
             for i in range(self.crossover_count):
                 self.population.append(taken_chromosomes[i])
-                self.population[-1].crossover(chosen_chromosomes[i])
+                self.population[-1].crossover(chosen_chromosomes[i], self.crossover_weight)
                 self.population[-1].set_fitness()
         else:
             crosses = 0
@@ -111,7 +116,7 @@ class Population:
                     break
 
                 if ch in taken_chromosomes:
-                    ch.crossover(chosen_chromosomes[crosses])
+                    ch.crossover(chosen_chromosomes[crosses], self.crossover_weight)
                     ch.set_fitness()
                     crosses += 1
         
@@ -162,9 +167,4 @@ class Population:
         Returns:
             list: list of selected indexes
         """
-        indexes = []
-        while len(indexes) < count:
-            idx = random.randint(0, len(list) - 1)
-            if idx not in indexes:
-                indexes.append(idx)
-        return indexes
+        return random.sample(range(len(list)), count)

@@ -39,11 +39,12 @@ class Chromosome:
         self.fitness = self.get_fitness()
         
 
-    def mutate(self, probability: float):
-        """Mutates genes of the chromosome. The probability is half if the maze has a solution.
+    def mutate(self, probability: float, weight: float =0.5):
+        """Mutates genes of the chromosome.
 
         Args:
             probability (float): probability for mutation
+            weight (float): weight determines mutation probability for chromosomes with solution (weight * probability)
         """
         # Get rid of border which cannot mutate
         self.genes= self.genes[1: -1, 1: -1]
@@ -51,7 +52,7 @@ class Chromosome:
 
         # Lower mutation probability for mazes with solution
         if self.fitness > 0:
-            probability = 0.5 * probability
+            probability = weight * probability
 
         for i in range(flatten_genes.size):
             if random.uniform(0, 1) <= probability:
@@ -65,20 +66,21 @@ class Chromosome:
         self.genes = np.pad(self.genes, pad_width=1, mode="constant", constant_values=0)
 
 
-    def crossover(self, second_chromosome):
+    def crossover(self, second_chromosome, weight: float =0.35):
         """Crossing genes of two chromosomes. Changing the original.
         Chromosome with higher fitness has higher probability for its genes to be taken.
 
         Args:
-            second_chromosome (Chromosome): Second chromosome for crossing (this one doesn't change)
+            second_chromosome (Chromosome): second chromosome for crossing (this one doesn't change)
+            weight (float): determines probability of chromosome keeping his genes (0 + weight, 1 - weight)
         """
         rows, _ = self.genes.shape
 
         # Creating a crossing mask (0 keeps, 1 takes genes)
         if self.fitness > second_chromosome.fitness:
-            mask = np.random.choice([0, 1], size=rows, p=[0.65, 0.35])
+            mask = np.random.choice([0, 1], size=rows, p=[1 - weight, 0 + weight])
         else:
-            mask = np.random.choice([0, 1], size=rows, p=[0.35, 0.65])
+            mask = np.random.choice([0, 1], size=rows, p=[0 + weight, 1 - weight])
 
         for i, row in enumerate(mask):
             if row == 1:
